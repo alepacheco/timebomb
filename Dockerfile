@@ -2,7 +2,7 @@ FROM node
 
 COPY . .
 
-RUN npm install
+RUN yarn
 RUN npm run build
 RUN npm test
 

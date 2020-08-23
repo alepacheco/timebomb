@@ -1,8 +1,5 @@
 {
   "name": "landing-template",
-  "engines": {
-    "node": "12"
-  },
   "version": "1.0.0",
   "description": "Template website",
   "main": "index.js",
