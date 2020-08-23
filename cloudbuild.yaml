@@ -1,12 +1,4 @@
 steps:
-  - name: 'node'
-    entrypoint: npm
-    args: ['install']
-  
-  - name: 'node'
-    entrypoint: npm
-    args: ['run', 'test']
-  
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/timebomb-287313/timebomb:$COMMIT_SHA', '.']
