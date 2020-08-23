@@ -11,7 +11,7 @@
     "lint": "npm run prettier-check",
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "prettier-check": "prettier --check \"./**/*.{ts,tsx}\"",
     "fix": "npm run prettier",
     "prettier": "prettier --write \"./**/*.{ts,tsx}\""
