@@ -1,0 +1,37 @@
+steps:
+  - name: 'node'
+    entrypoint: npm
+    args: ['install']
+  
+  - name: 'node'
+    entrypoint: npm
+    args: ['run', 'test']
+  
+  # Build the container image
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/timebomb-287313/timebomb:$COMMIT_SHA', '.']
+  # Push the image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/timebomb-287313/timebomb:$COMMIT_SHA']
+  # Deploy image to Cloud Run
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+        - 'run'
+        - 'deploy'
+        - 'wingman-web-$BRANCH_NAME'
+        - '--image'
+        - 'gcr.io/timebomb-287313/timebomb:$COMMIT_SHA'
+        - '--region'
+        - 'europe-west1'
+        - '--platform'
+        - 'managed'
+        - '--update-env-vars'
+        - 'ENV=PROD,GCP=TRUE'
+        - '--allow-unauthenticated'
+        - '--memory'
+        - '128Mi'
+images:
+  - gcr.io/timebomb-287313/timebomb
+
+
+timeout: 8000s
