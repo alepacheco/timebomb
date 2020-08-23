@@ -10,7 +10,7 @@ steps:
     args:
         - 'run'
         - 'deploy'
-        - 'wingman-web-$BRANCH_NAME'
+        - 'timebomb-$BRANCH_NAME'
         - '--image'
         - 'gcr.io/timebomb-287313/timebomb:$COMMIT_SHA'
         - '--region'
