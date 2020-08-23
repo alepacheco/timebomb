@@ -1,6 +1,8 @@
 FROM node
 
-COPY . .
+WORKDIR /app
+
+COPY . /app/
 
 RUN yarn
 RUN npm run build
